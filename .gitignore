@@ -11,7 +11,7 @@ ehthumbs.db
 *.swo
 *~
 
-# Node (for future development)
+# Node
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -27,8 +27,11 @@ dist/
 build/
 .next/
 out/
+shared/dist/
+backend/dist/
 
 # Mobile
+mobile/.expo/
 ios/Pods/
 android/.gradle/
 *.apk
@@ -44,3 +47,6 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+
+# TypeORM
+ormconfig.json
