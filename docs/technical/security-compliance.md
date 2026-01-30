@@ -90,14 +90,16 @@ Map Stripe Identity error codes to user-friendly messages:
 
 All data storage must be encrypted using AES-256:
 
-```yaml
+```bash
 # AWS RDS Configuration
 aws rds modify-db-instance \
   --db-instance-identifier tradefolio-prod \
   --storage-encrypted \
   --kms-key-id alias/tradefolio-rds-key
+```
 
-# S3 Bucket Policy
+```json
+// S3 Bucket Encryption Policy
 {
   "Rules": [{
     "ApplyServerSideEncryptionByDefault": {

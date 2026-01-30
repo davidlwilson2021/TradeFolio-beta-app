@@ -8,13 +8,13 @@ gantt
     dateFormat  YYYY-MM-DD
     section Phase1_MVP
     Portfolio Utility         :a1, 2026-01-26, 90d
-    Offline Sync Engine      :after a1, 30d
+    Offline Sync Engine      :a2, after a1, 30d
     section Phase2_Trust
-    Stripe Identity KYC    :2026-05-01, 45d
-    Social Vouching System   :45d
+    Stripe Identity KYC    :a3, 2026-05-01, 45d
+    Social Vouching System   :a4, after a3, 45d
     section Phase3_Marketplace
-    Stripe Connect Integration :2026-08-01, 60d
-    Job Board and Search       :90d
+    Stripe Connect Integration :a5, 2026-08-01, 60d
+    Job Board and Search       :a6, after a5, 90d
 ```
 
 ## Phase 1: The "Cold Start" MVP (Months 0-4)

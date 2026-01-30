@@ -45,6 +45,7 @@ Eliminating "bad hires" by providing recruiters with visual **Proof of Skill** t
 - [Product Requirements](./product-requirements.md)
 - [Go-to-Market Plan](./go-to-market.md)
 - [Roadmap & Budget](./roadmap-budget.md)
+- [Proposal Review & Recommendations](./proposal-review.md)
 - [Technical Architecture](../technical/architecture-overview.md)
 - [Implementation Guides](../implementation/feature-prompts.md)
 
