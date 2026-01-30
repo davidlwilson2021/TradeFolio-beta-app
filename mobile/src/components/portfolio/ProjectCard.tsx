@@ -133,10 +133,10 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.sm,
   },
   statusPublished: {
-    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+    backgroundColor: colors.successBackground,
   },
   statusDraft: {
-    backgroundColor: 'rgba(255, 193, 7, 0.2)',
+    backgroundColor: colors.warningBackground,
   },
   statusText: {
     ...typography.caption,

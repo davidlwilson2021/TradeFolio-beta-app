@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { TextInput, View, Text, StyleSheet, TextInputProps } from 'react-native';
 import { colors } from '../../theme/colors';
 import { typography } from '../../theme/typography';
-import { spacing, MIN_TOUCH_TARGET } from '../../theme/spacing';
+import { spacing, MIN_TOUCH_TARGET, borderRadius } from '../../theme/spacing';
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   input: {
     minHeight: MIN_TOUCH_TARGET,
     backgroundColor: colors.surfaceLight,
-    borderRadius: 8,
+    borderRadius: borderRadius.md,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     color: colors.text,

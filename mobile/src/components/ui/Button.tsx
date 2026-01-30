@@ -2,12 +2,12 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle } from 'react-native';
 import { colors } from '../../theme/colors';
 import { typography } from '../../theme/typography';
-import { spacing, MIN_TOUCH_TARGET } from '../../theme/spacing';
+import { spacing, MIN_TOUCH_TARGET, borderRadius } from '../../theme/spacing';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
@@ -25,17 +25,22 @@ export function Button({ title, onPress, variant = 'primary', loading, disabled,
         variant === 'primary' && styles.primary,
         variant === 'secondary' && styles.secondary,
         variant === 'outline' && styles.outline,
+        variant === 'ghost' && styles.ghost,
         isDisabled && styles.disabled,
         style,
       ]}
       activeOpacity={0.7}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'outline' ? colors.primary : colors.white} />
+        <ActivityIndicator
+          color={variant === 'primary' ? colors.textOnPrimary : colors.white}
+        />
       ) : (
         <Text style={[
           styles.text,
+          variant === 'primary' && styles.primaryText,
           variant === 'outline' && styles.outlineText,
+          variant === 'ghost' && styles.ghostText,
           isDisabled && styles.disabledText,
         ]}>
           {title}
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     minHeight: MIN_TOUCH_TARGET,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
-    borderRadius: 8,
+    borderRadius: borderRadius.md,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -58,12 +63,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   secondary: {
-    backgroundColor: colors.surfaceLight,
+    backgroundColor: colors.accent,
   },
   outline: {
     backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: colors.primary,
+    borderWidth: 2,
+    borderColor: colors.accent,
+  },
+  ghost: {
+    backgroundColor: 'transparent',
   },
   disabled: {
     opacity: 0.5,
@@ -72,8 +80,14 @@ const styles = StyleSheet.create({
     color: colors.white,
     ...typography.button,
   },
+  primaryText: {
+    color: colors.textOnPrimary,
+  },
   outlineText: {
-    color: colors.primary,
+    color: colors.accent,
+  },
+  ghostText: {
+    color: colors.accent,
   },
   disabledText: {
     color: colors.textMuted,

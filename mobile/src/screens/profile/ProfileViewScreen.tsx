@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   avatarText: {
     ...typography.h1,
-    color: colors.white,
+    color: colors.textOnPrimary,
   },
   name: {
     ...typography.h2,

@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   categoryTextSelected: {
-    color: colors.white,
+    color: colors.textOnPrimary,
     fontWeight: '600',
   },
 });

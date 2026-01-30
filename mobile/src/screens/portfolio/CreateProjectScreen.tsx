@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   skillTextSelected: {
-    color: colors.white,
+    color: colors.textOnPrimary,
     fontWeight: '600',
   },
 });

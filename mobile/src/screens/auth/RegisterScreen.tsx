@@ -6,7 +6,7 @@ import { Button, Input } from '../../components/ui';
 import { REGISTER_MUTATION } from '../../graphql/mutations/auth';
 import { colors } from '../../theme/colors';
 import { typography } from '../../theme/typography';
-import { spacing } from '../../theme/spacing';
+import { spacing, borderRadius } from '../../theme/spacing';
 
 interface RegisterForm {
   fullName: string;
@@ -169,9 +169,9 @@ const styles = StyleSheet.create({
     color: colors.error,
     textAlign: 'center',
     marginBottom: spacing.md,
-    backgroundColor: 'rgba(244,67,54,0.1)',
+    backgroundColor: colors.errorBackground,
     padding: spacing.sm,
-    borderRadius: 8,
+    borderRadius: borderRadius.md,
   },
   footer: {
     flexDirection: 'row',

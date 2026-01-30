@@ -9,10 +9,14 @@ export const spacing = {
 
 export const MIN_TOUCH_TARGET = 48;
 
+/**
+ * Border radius kept tight (max 4px).
+ * Everything should feel machined and structural -- no pill shapes.
+ */
 export const borderRadius = {
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
-  round: 999,
+  sm: 2,
+  md: 4,
+  lg: 4,
+  xl: 4,
+  round: 999, // avatars only
 };
