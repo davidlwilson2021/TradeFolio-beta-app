@@ -350,12 +350,12 @@ async deleteAccount(userId: string): Promise<void> {
   const user = await this.userRepo.findOneOrFail({ where: { id: userId } });
   
   // 2. Add to suppression list (prevents restoration)
-  await this.suppressionRepo.insert({ 
-    email: user.email, 
-    deletedAt: new Date() 
+  await this.suppressionRepo.insert({
+    email: user.email,
+    deletedAt: new Date()
   });
-  
-  // 2. Delete from primary database
+
+  // 3. Delete from primary database
   await this.database.transaction(async (manager) => {
     await manager.delete('vouches', { fromProfileId: userId });
     await manager.delete('vouches', { toProfileId: userId });
@@ -365,19 +365,19 @@ async deleteAccount(userId: string): Promise<void> {
     await manager.delete('transactions', { contractorProfileId: userId });
     await manager.delete('profiles', { userId });
   });
-  
-  // 3. Delete from S3
+
+  // 4. Delete from S3
   await this.deleteUserMediaFromS3(userId);
-  
-  // 4. Delete from search index
+
+  // 5. Delete from search index
   await this.searchService.deleteUser(userId);
-  
-  // 5. Notify Stripe to delete customer
+
+  // 6. Notify Stripe to delete customer
   if (user.stripeCustomerId) {
     await stripe.customers.del(user.stripeCustomerId);
   }
-  
-  // 6. Log for compliance audit
+
+  // 7. Log for compliance audit
   await this.auditLog.record('account_deleted', { userId, deletedAt: new Date() });
 }
 ```

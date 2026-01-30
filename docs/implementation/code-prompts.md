@@ -482,7 +482,7 @@ Requirements:
 // lambda/processMedia.ts
 import { S3Event, Handler } from 'aws-lambda';
 import { MediaConvertClient, CreateJobCommand } from '@aws-sdk/client-mediaconvert';
-import { DynamoDBClient, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { Client } from 'pg';
 
 const mediaConvert = new MediaConvertClient({ region: process.env.AWS_REGION });
 

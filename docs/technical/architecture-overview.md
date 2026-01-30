@@ -316,7 +316,7 @@ graph TB
 
 ### Required Tools
 
-- Node.js 18+
+- Node.js 20+ (LTS)
 - PostgreSQL 14+
 - Redis (for caching, queues)
 - React Native CLI + Expo

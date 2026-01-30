@@ -616,17 +616,19 @@ sequenceDiagram
 
 ## Error Handling
 
-```graphql
-type Error {
-  code: String!
-  message: String!
-  field: String
-}
+Errors are returned via GraphQL's standard `errors` array in the response. The backend formats all errors using the following structure:
 
-union MutationResult = Success | Error
-
-type Success {
-  success: Boolean!
+```json
+{
+  "errors": [
+    {
+      "message": "Invalid input",
+      "extensions": {
+        "code": "VALIDATION_ERROR",
+        "field": "email"
+      }
+    }
+  ]
 }
 ```
 

@@ -125,8 +125,8 @@ sequenceDiagram
     T->>TF: Uploads Completed Project Photo
     TF->>TF: Verify Work / Client Approval
     TF->>S: Release Funds Trigger
-    S->>TF: Collects ~$50 Platform Fee
-    S->>T: Payout ~$920.70 Net
+    S->>TF: Collects ~$48.54 Platform Fee
+    S->>T: Payout ~$922.16 Net
     Note over T: Receives 1099-K via Stripe
 ```
 
