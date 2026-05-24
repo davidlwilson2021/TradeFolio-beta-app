@@ -17,7 +17,9 @@ import { Profile } from '../profiles/entities/profile.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get('JWT_SECRET', 'dev_secret'),
+        // getOrThrow: throws at startup if JWT_SECRET is not set.
+        // Never falls back to a hardcoded value — a missing secret is a deploy error.
+        secret: config.getOrThrow<string>('JWT_SECRET'),
         signOptions: { expiresIn: config.get('JWT_EXPIRATION', '7d') },
       }),
     }),

@@ -32,6 +32,12 @@ export class SeedService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
+    // Never seed in production — data seeding belongs in a controlled migration
+    // or a one-off script, not an automatic startup hook.
+    if (process.env.NODE_ENV === 'production') {
+      this.logger.log('Production environment detected — skipping seed');
+      return;
+    }
     await this.seed();
   }
 

@@ -50,3 +50,7 @@ coverage/
 
 # TypeORM
 ormconfig.json
+
+# Claude Code / AI tool internals
+.claude/
+.cursor/

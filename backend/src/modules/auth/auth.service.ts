@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { Profile } from '../profiles/entities/profile.entity';
 import { RegisterInput } from './dto/register.input';
+import { UserModel } from './models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -48,21 +49,31 @@ export class AuthService {
     }
 
     const profile = await this.profileRepo.findOne({ where: { userId: user.id } });
-    return this.generateTokens(user, profile!);
+    if (!profile) {
+      throw new UnauthorizedException('User profile not found');
+    }
+    return this.generateTokens(user, profile);
   }
 
-  async getUserById(id: string) {
-    return this.userRepo.findOne({ where: { id } });
+  /** T-11: Returns a UserModel DTO — never the raw User entity (which contains passwordHash). */
+  async getUserById(id: string): Promise<UserModel | null> {
+    const user = await this.userRepo.findOne({ where: { id } });
+    if (!user) return null;
+    const profile = await this.profileRepo.findOne({ where: { userId: id } });
+    return {
+      id:        user.id,
+      email:     user.email,
+      fullName:  profile?.fullName ?? '',
+      profileId: profile?.profileId,
+    };
   }
 
   private generateTokens(user: User, profile: Profile) {
     const payload = { sub: user.id, email: user.email };
     const accessToken = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '30d' });
 
     return {
       accessToken,
-      refreshToken,
       user: {
         id: user.id,
         email: user.email,

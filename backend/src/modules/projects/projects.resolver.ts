@@ -18,13 +18,16 @@ export class ProjectsResolver {
     return this.projectsService.getById(projectId);
   }
 
+  // T-9: Unauthenticated public view — only published projects are returned.
+  // Draft and archived projects are hidden from unauthenticated callers.
+  // Authenticated users can see their own full project list via myProjects.
   @Query(() => [ProjectModel])
   async getProjectsByUser(
     @Args('userId', { type: () => ID }) userId: string,
     @Args('limit', { type: () => Int, nullable: true, defaultValue: 20 }) limit: number,
     @Args('offset', { type: () => Int, nullable: true, defaultValue: 0 }) offset: number,
   ): Promise<any[]> {
-    return this.projectsService.getByUser(userId, limit, offset);
+    return this.projectsService.getPublishedByUser(userId, limit, offset);
   }
 
   @Query(() => [ProjectModel])

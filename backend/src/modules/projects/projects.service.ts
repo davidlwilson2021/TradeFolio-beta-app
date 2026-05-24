@@ -64,6 +64,21 @@ export class ProjectsService {
     });
   }
 
+  /** T-9: Public portfolio view — returns only published projects.
+   *  Unauthenticated callers must not see draft or archived work. */
+  async getPublishedByUser(userId: string, limit = 20, offset = 0): Promise<Project[]> {
+    const profile = await this.profileRepo.findOne({ where: { userId } });
+    if (!profile) return [];
+
+    return this.projectRepo.find({
+      where: { profileId: profile.profileId, status: 'published' },
+      relations: ['media', 'skills'],
+      order: { publishedAt: 'DESC' },
+      take: limit,
+      skip: offset,
+    });
+  }
+
   async update(userId: string, projectId: string, input: UpdateProjectInput): Promise<Project> {
     const project = await this.getById(projectId);
     await this.verifyOwnership(userId, project);
