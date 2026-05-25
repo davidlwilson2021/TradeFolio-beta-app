@@ -54,3 +54,9 @@ ormconfig.json
 # Claude Code / AI tool internals
 .claude/
 .cursor/
+
+# Claude Code context docs — local only, never commit
+CLAUDE.md
+CLAUDE_*.md
+AGENTS.md
+GEMINI.md
