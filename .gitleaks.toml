@@ -1,0 +1,15 @@
+title = "TradeFolio gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Known-safe placeholder values in example files"
+regexes = [
+    'your_password_here',
+    'your_jwt_secret_here',
+    'CHANGE_ME',
+]
+paths = [
+    '.env.example',
+]
