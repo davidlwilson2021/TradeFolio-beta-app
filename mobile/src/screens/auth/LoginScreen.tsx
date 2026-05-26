@@ -22,8 +22,8 @@ export function LoginScreen({ navigation, onLogin }: any) {
     try {
       setLoginError('');
       const result = await login({ variables: { input: data } });
-      const { accessToken, refreshToken, user } = result.data.login;
-      await onLogin(accessToken, refreshToken, user);
+      const { accessToken, user } = result.data.login;
+      await onLogin(accessToken, user);
     } catch (err: any) {
       setLoginError(err.message || 'Login failed');
     }

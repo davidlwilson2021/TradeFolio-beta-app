@@ -9,7 +9,7 @@ const RootStack = createNativeStackNavigator();
 
 interface AppNavigatorProps {
   isAuthenticated: boolean;
-  onLogin: (accessToken: string, refreshToken: string, user: any) => Promise<void>;
+  onLogin: (accessToken: string, user: any) => Promise<void>;
   onSignOut: () => void;
 }
 
