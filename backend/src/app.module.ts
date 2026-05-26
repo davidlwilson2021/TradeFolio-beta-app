@@ -15,7 +15,11 @@ import { SeedModule } from './modules/seed/seed.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: join(__dirname, '..', '..', '.env'),
+      // Repo root when running from dist; backend/ when developers copy .env beside package.json.
+      envFilePath: [
+        join(__dirname, '..', '..', '.env'),
+        join(__dirname, '..', '.env'),
+      ],
     }),
     // Rate-limit all requests: 20 per 60 s globally.
     // Auth mutations apply an additional tighter guard via GqlThrottlerGuard.

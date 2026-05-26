@@ -43,9 +43,9 @@ export function useAuth() {
     }
   };
 
-  const signIn = useCallback(async (accessToken: string, refreshToken: string, user: AuthUser) => {
+  const signIn = useCallback(async (accessToken: string, user: AuthUser) => {
     await SecureStore.setItemAsync('accessToken', accessToken);
-    await SecureStore.setItemAsync('refreshToken', refreshToken);
+    await SecureStore.deleteItemAsync('refreshToken');
     await SecureStore.setItemAsync('user', JSON.stringify(user));
     setState({ user, token: accessToken, isLoading: false, isAuthenticated: true });
   }, []);

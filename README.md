@@ -16,18 +16,20 @@ Skilled trades portfolio and marketplace app — a professional identity platfor
 ## Getting Started
 
 ```bash
-# Backend
-cd backend
-npm install
-npm run start:dev
+# From the monorepo root
+cp .env.example .env
+# Edit .env — JWT_SECRET and DATABASE_PASSWORD are required for the backend.
 
-# Mobile
-cd mobile
 npm install
-npx expo start
+
+# Backend (requires PostgreSQL on localhost:5432, database tradefolio_dev)
+npm run backend:dev
+
+# Mobile (separate terminal)
+npm run mobile:start
 ```
 
-Requires PostgreSQL running locally (`localhost:5432`, database `tradefolio_dev`).
+The backend loads environment variables from `.env` at the **repository root** (or `backend/.env` as a fallback). `JWT_SECRET` must be set or the API will fail at startup.
 
 ## Project Structure
 

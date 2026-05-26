@@ -7,7 +7,7 @@ import { colors } from '../theme/colors';
 const Stack = createNativeStackNavigator();
 
 interface AuthNavigatorProps {
-  onLogin: (accessToken: string, refreshToken: string, user: any) => Promise<void>;
+  onLogin: (accessToken: string, user: any) => Promise<void>;
 }
 
 export function AuthNavigator({ onLogin }: AuthNavigatorProps) {

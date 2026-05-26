@@ -33,8 +33,8 @@ export function RegisterScreen({ navigation, onLogin }: any) {
           },
         },
       });
-      const { accessToken, refreshToken, user } = result.data.register;
-      await onLogin(accessToken, refreshToken, user);
+      const { accessToken, user } = result.data.register;
+      await onLogin(accessToken, user);
     } catch (err: any) {
       setRegisterError(err.message || 'Registration failed');
     }
